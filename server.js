@@ -10,13 +10,17 @@ const sequelize = require("./config/connection");
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-  secret: 'Kleenex',
-  cookie: {},
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize
-  })
+	secret: 'Kleenex',
+	// https://stackoverflow.com/questions/38143993/session-auto-logout-after-inactivity
+	cookie: {
+		maxAge: 30 * 10000
+	},
+	rolling: true,
+	resave: false,
+	saveUninitialized: true,
+	store: new SequelizeStore({
+		db: sequelize
+	})
 };
 
 app.use(session(sess));
@@ -35,5 +39,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/'));
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+	app.listen(PORT, () => console.log('Now listening'));
 });

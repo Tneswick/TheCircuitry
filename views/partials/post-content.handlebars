@@ -1,11 +1,11 @@
 <article>
     <div>
         <h4>{{title}}</h4>
-        <p>
+        <p class="single-post-ele">
             {{content}}
         </p>
     </div>
-    <div>
+    <div class="single-post-ele">
         by {{user.username}} on {{format_date created_at}}
         |
         <a href="/post/{{id}}">{{comments.length}} comment(s)</a>

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 
-// get all posts for homepage
+// GET all posts for homepage
 router.get('/', (req, res) => {
     console.log('======================');
     Post.findAll({
@@ -29,7 +29,10 @@ router.get('/', (req, res) => {
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
 
-            res.render(); // HERE
+            res.render('homepage', {
+                posts,
+                loggedIn: req.session.loggedIn
+            });
         })
         .catch(err => {
             console.log(err);
@@ -37,7 +40,7 @@ router.get('/', (req, res) => {
         });
 });
 
-// get single post
+// GET single post
 router.get('/post/:id', (req, res) => {
     Post.findOne({
         where: {
@@ -72,7 +75,10 @@ router.get('/post/:id', (req, res) => {
 
             const post = dbPostData.get({ plain: true });
 
-            res.render(); // HERE
+            res.render('single-post', {
+                post,
+                loggedIn: req.session.loggedIn
+            }); 
         })
         .catch(err => {
             console.log(err);
@@ -80,15 +86,14 @@ router.get('/post/:id', (req, res) => {
         });
 });
 
+// Show login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
 
-    res.render(); // HERE
+    res.render('login');
 });
 
 module.exports = router;
-
-// ctrl+f 'HERE'

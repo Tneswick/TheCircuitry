@@ -43,4 +43,4 @@ Comment.init(
 
 module.exports = Comment;
 
-// change filename
+// To be able to post blogs, be sure to hit the login button and sign up with your email address. Posting and commenting is only available to logged in users. **If you are idle for too long, the site will automatically log you out!

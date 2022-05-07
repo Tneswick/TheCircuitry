@@ -73,11 +73,8 @@ router.get('/:id', (req, res) => {
 		});
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkAuth, (req, res) => {
 	const body = req.body
-	console.log(body);
-	console.log(req.session.user_id)
-	console.log(req.session)
 
 	Post.create({ ...body, user_id: req.session.user_id })
 	.then(dbPostData => {
@@ -88,18 +85,6 @@ router.post('/', (req, res) => {
 		console.log(err);
 		res.status(500).json(err);
 	});
-	// // insomnia testing route below--
-	// Post.create({
-	// 	...body
-	// })
-	// .then(dbPostData => {
-	// 	console.log(dbPostData);
-	// 	res.json({ message: 'OKAYYYYY' })
-	// })
-	// .catch(err => {
-	// 	console.log(err);
-	// 	res.status(500).json(err);
-	// });
 });
 
 

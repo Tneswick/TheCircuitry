@@ -6,25 +6,31 @@
 //     const title = document.getElementById('post-title').value;
 //     const content = document.getElementById('content').value;
 
-//     const response = await fetch(`/api/posts`, {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             title,
-//             content
-//         }),
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     });
 
-//     if (response.ok) {
-//         document.location.replace('/dashboard');
-//     } else {
-//         alert(response.statusText);
-//     }
+
+    // const response = await fetch(`/api/posts/`, {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //         title,
+    //         content
+    //     }),
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // });
+
+    // if (response.ok) {
+    //     console.log('Post Success!')
+    //     // document.location.replace('/dashboard');
+    // } else {
+    //     alert(response.statusText);
+    // }
 // }
+// document.getElementById('submit-post').addEventListener('submit', newPostSubmit);
 
-function postSubmit (event) {
+
+
+async function postSubmit (event) {
     console.log('no');
     event.preventDefault();
     console.log('yes');
@@ -32,7 +38,7 @@ function postSubmit (event) {
     const title = document.getElementById('post-title').value;
     const content = document.getElementById('content').value;
 
-    fetch(`/api/posts`, {
+    const response = await fetch(`/api/posts/`, {
         method: 'POST',
         body: JSON.stringify({
             title,
@@ -41,15 +47,12 @@ function postSubmit (event) {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('POST Success!');
-        } else {
-            alert(response.statusText)
-        }
-    })
-}
+    });
 
-// document.getElementById('submit-post').addEventListener('submit', newPostSubmit);
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert(response.statusText);
+    }
+}
 document.getElementById('submit-post').addEventListener('submit', postSubmit);

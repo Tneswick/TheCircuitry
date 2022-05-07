@@ -22,6 +22,9 @@
 - [Handlebars](https://www.npmjs.com/package/handlebars)
 - [Sequelize](https://www.npmjs.com/package/sequelize)
 
+## ⚙ Contributers
+- *Made by* **[Tneswick](https://github.com/Tneswick)**
+
 ## ⚖ License
 This project is covered under the [MIT](https://opensource.org/licenses/MIT) license guidelines.
 Please visit the link or the [file](./LICENSE) for more details.
